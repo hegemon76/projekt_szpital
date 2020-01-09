@@ -46,5 +46,16 @@ namespace BibliotekaPracownikow
             if (pwz != 0) this.PWZ = pwz;
             else if (specjalizacja != "") this.Specjalizacja = specjalizacja;
         }
+        public void UsunDyzur(DateTime data)
+        {
+            for (int i = 0; i < Dyzury.Count(); i++)
+            {
+                if (data == Dyzury[i]) Dyzury.RemoveAt(i);
+            }
+        }
+        public void DodajDyzur(DateTime data)
+        {
+            Dyzury.Add(data);
+        }
     }
 }

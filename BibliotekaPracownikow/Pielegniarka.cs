@@ -38,5 +38,16 @@ namespace BibliotekaPracownikow
         {
             base.EdytujDane(imie, nazwisko, pesel);
         }
+        public void UsunDyzur(DateTime data)
+        {
+            for (int i = 0; i < Dyzury.Count(); i++)
+            {
+                if (data == Dyzury[i]) Dyzury.RemoveAt(i);
+            }
+        }
+        public void DodajDyzur(DateTime data)
+        {
+            Dyzury.Add(data);
+        }
     }
 }

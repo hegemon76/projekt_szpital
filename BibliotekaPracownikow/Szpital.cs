@@ -144,6 +144,7 @@ namespace BibliotekaPracownikow
                     dzien++;
                 }
             }
+            Console.ForegroundColor = ConsoleColor.White;
         }
         public void WyswietlGrafikDanegoPracownika(int nrPracwnika)
         {
@@ -175,9 +176,9 @@ namespace BibliotekaPracownikow
                 Console.WriteLine(oPracownik.PrzedstawSieDlaInnych());
             }
         }
-      public void UsunDyzur(int dzienMiesiaca,int nrDyzuru)
+        public void UsunDyzur(int dzienMiesiaca, int nrDyzuru)
         {
-            
+            DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, dzienMiesiaca);
             for (int i = 0; i < listaDyzurow.Count(); i++)
             {
                 if (i == dzienMiesiaca - 1)
@@ -185,10 +186,42 @@ namespace BibliotekaPracownikow
                     for (int j = 0; j < listaDyzurow[i].Count(); j++)
                     {
                         if (nrDyzuru > listaDyzurow[i].Count()) Console.WriteLine("Takiego dyzuru nie ma w bazie");
-                        else if (j == nrDyzuru - 1) listaDyzurow[i].RemoveAt(j);
+                        else if (j == nrDyzuru - 1)
+                        {
+                            var lekarz = listaDyzurow[i].ElementAt(j) as Lekarz;
+                            var pielegniarka = listaDyzurow[i].ElementAt(j) as Pielegniarka;
+                            listaDyzurow[i].RemoveAt(j);
+                            if (lekarz != null) lekarz.UsunDyzur(dt);
+                            else if (pielegniarka != null) pielegniarka.UsunDyzur(dt);
+                        }
+
                     }
                 }
             }
         }
-    }
+        public void DodajDyzur(int dzienMiesiaca, int nrPracownika, int dniWMiesiacu)
+        {
+            DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, dzienMiesiaca);
+            for (int i = 0; i < dniWMiesiacu; i++)
+            {
+                if (i == dzienMiesiaca - 1)
+                {
+                    var lekarz = ListaPracownikow.ElementAt(nrPracownika-1) as Lekarz;
+                    var pielegniarka = ListaPracownikow.ElementAt(nrPracownika-1) as Pielegniarka;
+                    if (lekarz != null)
+                    {
+                        listaDyzurow[i].Add(lekarz);
+                        lekarz.DodajDyzur(dt);
+                        Console.WriteLine("Pomyslnie dodano pracownika");
+                    }
+                    else if (pielegniarka != null)
+                    {
+                        listaDyzurow[i].Add(pielegniarka);
+                        pielegniarka.DodajDyzur(dt);
+                        Console.WriteLine("Pomyslnie dodano pracownika");
+                    }
+                }
+            }
+        }
+    }//class
 }

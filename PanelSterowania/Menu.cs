@@ -30,19 +30,19 @@ namespace PanelSterowania
             Czlowiek czlowiek12 = new Pielegniarka("111111", "11111", 123, false, "123");
             Czlowiek czlowiek13 = new Pielegniarka("222222", "22222", 123, false, "123");
             Czlowiek czlowiek14 = new Pielegniarka("3333", "33333", 123, false, "123");
-            //szp.DodajPracownika(czlowiek);
-            //szp.DodajPracownika(czlowiek1);
-            //szp.DodajPracownika(czlowiek2);
-            //szp.DodajPracownika(czlowiek3);
-            //szp.DodajPracownika(czlowiek4);
-            //szp.DodajPracownika(czlowiek5);
-            //szp.DodajPracownika(czlowiek6);
-            //szp.DodajPracownika(czlowiek7);
-            //szp.DodajPracownika(czlowiek8);
-            //szp.DodajPracownika(czlowiek9);
-            //szp.DodajPracownika(czlowiek10);
-            // szp.DodajPracownika(czlowiek11);
-            // szp.DodajPracownika(czlowiek12);
+            szp.DodajPracownika(czlowiek);
+            szp.DodajPracownika(czlowiek1);
+            szp.DodajPracownika(czlowiek2);
+            szp.DodajPracownika(czlowiek3);
+            szp.DodajPracownika(czlowiek4);
+            szp.DodajPracownika(czlowiek5);
+            szp.DodajPracownika(czlowiek6);
+            szp.DodajPracownika(czlowiek7);
+            szp.DodajPracownika(czlowiek8);
+            szp.DodajPracownika(czlowiek9);
+            szp.DodajPracownika(czlowiek10);
+            szp.DodajPracownika(czlowiek11);
+            szp.DodajPracownika(czlowiek12);
             // szp.DodajPracownika(czlowiek13);
             // szp.DodajPracownika(czlowiek14);
             //List<List<Czlowiek>> listaDyzurow = new List<List<Czlowiek>>();
@@ -67,14 +67,15 @@ namespace PanelSterowania
         protected const string specjalizacjaLekarza = "1.Kardiolog\n2.Urolog\n3.Neurolog\n4.Laryngolog";
         protected const string menuAplikacji = "1.Dodaj Pracownika\n2.Usun Pracownika\n3.Wyswietl Pracownikow\n4.Edytuj dane pracownika" +
             "\n5.Ustal grafik dla lekarzy i pielegniarek\n6.Wyswietl grafiki\n7.Wyswietl grafik pracownika" +
-            "\n8.Zapisz liste pracownikow\n9.Odczytaj liste pracownikow\n10.Usun dyzur\n11.wyjscie";
+            "\n8.Zapisz liste pracownikow\n9.Odczytaj liste pracownikow\n10.Usun dyzur\n11.Dodaj dyzur\n12.wyjscie";
 
         public static void MenuSzpitala(Szpital szpital)
         {
+            int ileDniMaMiesiac = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
             int wyborMenu;
             do
             {
-                wyborMenu = podajLiczbe(menuAplikacji, 1, 11);
+                wyborMenu = podajLiczbe(menuAplikacji, 1, 12);
                 Console.Clear();
                 switch (wyborMenu)
                 {
@@ -110,17 +111,22 @@ namespace PanelSterowania
                         deserializuj(szpital);
                         break;
                     case 10:
-                        int ileDniMaMiesiac = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
                         szpital.WyswietlGrafik();
                         int dzienMiesiaca = podajLiczbe("Podaj dzien miesiaca", 1, ileDniMaMiesiac);
-                        int nrDyzuru = podajLiczbe("podaj nr dyzuru", 1, szpital.listaDyzurow[dzienMiesiaca].Count());
+                        int nrDyzuru = podajLiczbe("podaj nr dyzuru", 1, szpital.listaDyzurow[dzienMiesiaca-1].Count());
                         szpital.UsunDyzur(dzienMiesiaca, nrDyzuru);
+                        break;
+                    case 11:
+                        szpital.WyswietlPracownikow();
+                        int nrPracownika = podajLiczbe("Podaj nr pracownika", 1, szpital.ListaPracownikow.Count());
+                        int gdzieDodac = podajLiczbe("Podaj dzien do ktorego chcesz dodac pracownika", 1, ileDniMaMiesiac);
+                        szpital.DodajDyzur(gdzieDodac,nrPracownika,ileDniMaMiesiac);
                         break;
                     default:
                         break;
                 }
                 Console.WriteLine();
-            } while (wyborMenu != 11);
+            } while (wyborMenu != 12);
         }
 
         public static Czlowiek UtworzPracownika()
