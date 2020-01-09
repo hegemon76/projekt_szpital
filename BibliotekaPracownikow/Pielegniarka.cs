@@ -34,5 +34,9 @@ namespace BibliotekaPracownikow
                 }
             }
         }
+        public override void EdytujDane(string imie, string nazwisko, int pesel)
+        {
+            base.EdytujDane(imie, nazwisko, pesel);
+        }
     }
 }

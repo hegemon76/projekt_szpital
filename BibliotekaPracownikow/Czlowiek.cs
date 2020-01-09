@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BibliotekaPracownikow
 {
     [Serializable]
-    public class Czlowiek 
+    public class Czlowiek
     {
         public string Imie { get; private set; }
         public string Nazwisko { get; private set; }
@@ -20,7 +20,7 @@ namespace BibliotekaPracownikow
             this.Nazwisko = nazwisko;
             this.Pesel = pesel;
             this.IsAdmin = isAdmin;
-            
+
         }
 
         public Czlowiek(string imie, string nazwisko, bool isAdmin)
@@ -37,6 +37,12 @@ namespace BibliotekaPracownikow
         public virtual string PrzedstawSieDlaInnych()
         {
             return $"{this.Imie} {this.Nazwisko}";
+        }
+        public virtual void EdytujDane(string imie, string nazwisko, int pesel)
+        {
+            if (imie != "") this.Imie = imie;
+            if (nazwisko != "") this.Nazwisko = nazwisko;
+            if (pesel != 0) this.Pesel = pesel;
         }
     }
 }

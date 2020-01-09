@@ -88,6 +88,8 @@ namespace PanelSterowania
                         szpital.WyswietlPracownikow();
                         break;
                     case 4:
+                        szpital.WyswietlPracownikow();
+                        EdytujDane(szpital);
                         break;
                     case 5:
                         szpital.UstawGrafik();
@@ -132,6 +134,34 @@ namespace PanelSterowania
                 return pracownik = new Lekarz(imie, nazwisko, pesel, pwz, specjalizacja, false, "123");
             }
             else return pracownik = new Pielegniarka(imie, nazwisko, pesel, false, "123");
+        }
+        public static void EdytujDane(Szpital szpital)
+        {
+            int licznik = 0;
+            int wybor = podajLiczbe("Ktorego pracownika chcesz edytowac?", 1, szpital.ListaPracownikow.Count());
+            foreach (var oPracownik in szpital.ListaPracownikow)
+            {
+                var lekarz = oPracownik as Lekarz;
+                var pielegniarka = oPracownik as Pielegniarka;
+                if (lekarz != null && licznik == wybor - 1)
+                {
+                    string imie = podajTekst("Podaj nowe imie", 0);
+                    string nazwisko = podajTekst("Podaj nowe nazwisko", 0);
+                    int pesel = podajLiczbe("Podaj nowy pesel [0] zostawia poprzednią wartość", 0);
+                    int pwz = podajLiczbe("Podaj nowe PWZ, [0] zostawia poprzednią wartość", 0);
+                    string specjalizacja = podajSpecjalizacje("Wybierz nową specjalizacje");
+                    lekarz.EdytujDane(imie, nazwisko, pesel, pwz, specjalizacja);
+                }
+                else if (pielegniarka != null && licznik == wybor - 1)
+                {
+                    string imie = podajTekst("Podaj nowe imie", 0);
+                    string nazwisko = podajTekst("Podaj nowe nazwisko", 0);
+                    int pesel = podajLiczbe("Podaj nowy pesel [0] zostawia poprzednią wartość", 0);
+                    pielegniarka.EdytujDane(imie, nazwisko, pesel);
+                }
+                licznik++;
+            }
+            Console.WriteLine("Poprawnie wyedytowano dane");
         }
         protected static string podajSpecjalizacje(string msg)
         {

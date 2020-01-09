@@ -40,5 +40,11 @@ namespace BibliotekaPracownikow
                 }
             }
         }
+        public void EdytujDane(string imie, string nazwisko, int pesel, int pwz,string specjalizacja)
+        {
+            base.EdytujDane(imie, nazwisko, pesel);
+            if (pwz != 0) this.PWZ = pwz;
+            else if (specjalizacja != "") this.Specjalizacja = specjalizacja;
+        }
     }
 }
