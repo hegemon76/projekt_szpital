@@ -43,8 +43,8 @@ namespace PanelSterowania
             szp.DodajPracownika(czlowiek10);
             szp.DodajPracownika(czlowiek11);
             szp.DodajPracownika(czlowiek12);
-            // szp.DodajPracownika(czlowiek13);
-            // szp.DodajPracownika(czlowiek14);
+            szp.DodajPracownika(czlowiek13);
+            szp.DodajPracownika(czlowiek14);
             //List<List<Czlowiek>> listaDyzurow = new List<List<Czlowiek>>();
 
 
@@ -62,7 +62,8 @@ namespace PanelSterowania
             //szp.WyswietlPracownikow();
             // szp.UstawGrafik();
             // szp.WyswietlGrafik();
-            MenuSzpitala(szp);
+            //MenuSzpitala(szp);
+            WyswietlPliki();
         }
         protected const string specjalizacjaLekarza = "1.Kardiolog\n2.Urolog\n3.Neurolog\n4.Laryngolog";
         protected const string menuAplikacji = "1.Dodaj Pracownika\n2.Usun Pracownika\n3.Wyswietl Pracownikow\n4.Edytuj dane pracownika" +
@@ -71,6 +72,8 @@ namespace PanelSterowania
 
         public static void MenuSzpitala(Szpital szpital)
         {
+            deserializuj(szpital);
+            deserializujGrafiki(szpital);
             int ileDniMaMiesiac = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
             int wyborMenu;
             do
@@ -113,14 +116,19 @@ namespace PanelSterowania
                     case 10:
                         szpital.WyswietlGrafik();
                         int dzienMiesiaca = podajLiczbe("Podaj dzien miesiaca", 1, ileDniMaMiesiac);
-                        int nrDyzuru = podajLiczbe("podaj nr dyzuru", 1, szpital.listaDyzurow[dzienMiesiaca-1].Count());
+                        int nrDyzuru = podajLiczbe("podaj nr dyzuru", 1, szpital.listaDyzurow[dzienMiesiaca - 1].Count());
                         szpital.UsunDyzur(dzienMiesiaca, nrDyzuru);
                         break;
                     case 11:
                         szpital.WyswietlPracownikow();
                         int nrPracownika = podajLiczbe("Podaj nr pracownika", 1, szpital.ListaPracownikow.Count());
                         int gdzieDodac = podajLiczbe("Podaj dzien do ktorego chcesz dodac pracownika", 1, ileDniMaMiesiac);
-                        szpital.DodajDyzur(gdzieDodac,nrPracownika,ileDniMaMiesiac);
+                        szpital.DodajDyzur(gdzieDodac, nrPracownika, ileDniMaMiesiac);
+                        break;
+                    case 12:
+                        serializuj(szpital);
+                        serializujGrafiki(szpital);
+                        Console.WriteLine("Dane zostały zapisane, dziekuje za skorzystanie z programu");
                         break;
                     default:
                         break;
@@ -242,6 +250,27 @@ namespace PanelSterowania
             {
                 BinaryFormatter bf = new BinaryFormatter();
                 bf.Serialize(fs, szpital.ListaPracownikow);
+                bf.Serialize(fs, szpital.listaDyzurow);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine($"Nie udało się ponieważ {e.Message}");
+                throw;
+            }
+            finally
+            {
+                fs.Close();
+                Console.WriteLine("Dane zapisano prawidłowo");
+            }
+
+        }
+        static void serializujGrafiki(Szpital szpital)
+        {
+            FileStream fs = new FileStream("SZPITAL1.dat", FileMode.Create);
+            try
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(fs, szpital.listaDyzurow);
             }
             catch (SerializationException e)
             {
@@ -257,24 +286,74 @@ namespace PanelSterowania
         }
         static void deserializuj(Szpital szpital)
         {
-            Stream fs = File.OpenRead("SZPITAL.dat");
-            try
+            if (!File.Exists("SZPITAL.dat")) Console.WriteLine("Nie udalo sie zlokalizowac pliku");
+            else
             {
-                BinaryFormatter bf = new BinaryFormatter();
-                szpital.ListaPracownikow = (List<Czlowiek>)bf.Deserialize(fs);
-            }
-            catch (SerializationException e)
-            {
-                Console.WriteLine($"Nie udało się ponieważ {e.Message}");
-                throw;
-            }
-            finally
-            {
-                fs.Close();
-                Console.WriteLine("Dane wczytano prawidłowo");
+                Stream fs = File.OpenRead("SZPITAL.dat");
+                if (fs.GetType() != szpital.listaDyzurow.GetType())
+                {
+                    fs.Close();
+                    Console.WriteLine("Bledne typy danych");
+                }
+                else
+                {
+                    try
+                    {
+                        BinaryFormatter bf = new BinaryFormatter();
+                        szpital.ListaPracownikow = (List<Czlowiek>)bf.Deserialize(fs);
+                    }
+                    catch (SerializationException e)
+                    {
+                        Console.WriteLine($"Nie udało się ponieważ {e.Message}");
+                        throw;
+                    }
+                    finally
+                    {
+                        fs.Close();
+                        Console.WriteLine("Dane wczytano prawidłowo");
+                    }
+                }
             }
         }
-
+        static void deserializujGrafiki(Szpital szpital)
+        {
+            if (!File.Exists("SZPITAL.dat")) Console.WriteLine("Nie udalo sie zlokalizowac pliku");
+            else
+            {
+                Stream fs = File.OpenRead("SZPITAL1.dat");
+                if (fs.GetType() != szpital.listaDyzurow.GetType())
+                {
+                    fs.Close();
+                    Console.WriteLine("Bledne typy danych");
+                }
+                else
+                {
+                    try
+                    {
+                        BinaryFormatter bf = new BinaryFormatter();
+                        szpital.listaDyzurow = (List<List<Czlowiek>>)bf.Deserialize(fs);
+                    }
+                    catch (SerializationException e)
+                    {
+                        Console.WriteLine($"Nie udało się ponieważ {e.Message}");
+                        throw;
+                    }
+                    finally
+                    {
+                        fs.Close();
+                        Console.WriteLine("Dane wczytano prawidłowo");
+                    }
+                }
+            }
+        }
+        public static void WyswietlPliki()
+        {
+            string[] fileArray = Directory.GetFiles(@"C:\Users\Adrian\Downloads\testing-space-master (2)\testing-space-master\projekt_szpital\PanelSterowania\bin\Debug", "*.dat");
+            for (int i = 0; i < fileArray.Length; i++)
+            {
+                Console.WriteLine(Path.GetFileName(fileArray[i]));
+            }
+        }
     }
 }//class
 
