@@ -225,5 +225,10 @@ namespace BibliotekaPracownikow
                 }
             }
         }
+        public override bool Equals(object obj)
+        {
+            if (ListaPracownikow.GetType() != obj.GetType()) return false;
+            else return true;
+        }
     }//class
 }
