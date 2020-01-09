@@ -204,10 +204,12 @@ namespace BibliotekaPracownikow
             DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, dzienMiesiaca);
             for (int i = 0; i < dniWMiesiacu; i++)
             {
+                if (listaDyzurow.Count() <= dniWMiesiacu) listaDyzurow.Add(new List<Czlowiek>());
                 if (i == dzienMiesiaca - 1)
                 {
-                    var lekarz = ListaPracownikow.ElementAt(nrPracownika-1) as Lekarz;
-                    var pielegniarka = ListaPracownikow.ElementAt(nrPracownika-1) as Pielegniarka;
+
+                    var lekarz = ListaPracownikow.ElementAt(nrPracownika - 1) as Lekarz;
+                    var pielegniarka = ListaPracownikow.ElementAt(nrPracownika - 1) as Pielegniarka;
                     if (lekarz != null)
                     {
                         listaDyzurow[i].Add(lekarz);
