@@ -175,6 +175,20 @@ namespace BibliotekaPracownikow
                 Console.WriteLine(oPracownik.PrzedstawSieDlaInnych());
             }
         }
-        
+      public void UsunDyzur(int dzienMiesiaca,int nrDyzuru)
+        {
+            
+            for (int i = 0; i < listaDyzurow.Count(); i++)
+            {
+                if (i == dzienMiesiaca - 1)
+                {
+                    for (int j = 0; j < listaDyzurow[i].Count(); j++)
+                    {
+                        if (nrDyzuru > listaDyzurow[i].Count()) Console.WriteLine("Takiego dyzuru nie ma w bazie");
+                        else if (j == nrDyzuru - 1) listaDyzurow[i].RemoveAt(j);
+                    }
+                }
+            }
+        }
     }
 }

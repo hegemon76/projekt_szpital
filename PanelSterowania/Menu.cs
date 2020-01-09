@@ -65,15 +65,16 @@ namespace PanelSterowania
             MenuSzpitala(szp);
         }
         protected const string specjalizacjaLekarza = "1.Kardiolog\n2.Urolog\n3.Neurolog\n4.Laryngolog";
-        protected const string menuAplikacji = "1.Dodaj Pracownika\n2.Usun Pracownika\n3.Wyswietl Pracownikow\n4.Modyfikuj" +
-            "\n5.Ustal grafik dla lekarzy i pielegniarek\n6.Wyswietl grafiki\n7.Wyswietl grafik pracownika\n8.Serializuj\n9.Odczytaj\n10.wyjscie";
+        protected const string menuAplikacji = "1.Dodaj Pracownika\n2.Usun Pracownika\n3.Wyswietl Pracownikow\n4.Edytuj dane pracownika" +
+            "\n5.Ustal grafik dla lekarzy i pielegniarek\n6.Wyswietl grafiki\n7.Wyswietl grafik pracownika" +
+            "\n8.Zapisz liste pracownikow\n9.Odczytaj liste pracownikow\n10.Usun dyzur\n11.wyjscie";
 
         public static void MenuSzpitala(Szpital szpital)
         {
             int wyborMenu;
             do
             {
-                wyborMenu = podajLiczbe(menuAplikacji, 1, 10);
+                wyborMenu = podajLiczbe(menuAplikacji, 1, 11);
                 Console.Clear();
                 switch (wyborMenu)
                 {
@@ -108,11 +109,18 @@ namespace PanelSterowania
                     case 9:
                         deserializuj(szpital);
                         break;
+                    case 10:
+                        int ileDniMaMiesiac = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
+                        szpital.WyswietlGrafik();
+                        int dzienMiesiaca = podajLiczbe("Podaj dzien miesiaca", 1, ileDniMaMiesiac);
+                        int nrDyzuru = podajLiczbe("podaj nr dyzuru", 1, szpital.listaDyzurow[dzienMiesiaca].Count());
+                        szpital.UsunDyzur(dzienMiesiaca, nrDyzuru);
+                        break;
                     default:
                         break;
                 }
                 Console.WriteLine();
-            } while (wyborMenu != 10);
+            } while (wyborMenu != 11);
         }
 
         public static Czlowiek UtworzPracownika()
