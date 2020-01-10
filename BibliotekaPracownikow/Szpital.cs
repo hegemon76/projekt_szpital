@@ -171,9 +171,11 @@ namespace BibliotekaPracownikow
         }
         public void WyswietlPracownikowAdminowi()
         {
+            int licznik = 1;
             foreach (var oPracownik in ListaPracownikow)
             {
-                Console.WriteLine(oPracownik.PrzedstawSieDlaInnych());
+                Console.WriteLine($"{licznik}.{oPracownik.PrzedstawSieDlaAdmina()}\n");
+                licznik++;
             }
         }
         public void UsunDyzur(int dzienMiesiaca, int nrDyzuru)

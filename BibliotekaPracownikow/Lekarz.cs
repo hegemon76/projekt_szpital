@@ -22,7 +22,7 @@ namespace BibliotekaPracownikow
         }
         public override string PrzedstawSieDlaAdmina()
         {
-            return $"{base.PrzedstawSieDlaAdmina()} Specjalizacja: {this.Specjalizacja} \nPWZ: {this.PWZ} ";
+            return $"{this.GetType().Name}:\n{base.PrzedstawSieDlaAdmina()} Specjalizacja: {this.Specjalizacja} \nPWZ: {this.PWZ} ";
         }
 
         public override string PrzedstawSieDlaInnych()

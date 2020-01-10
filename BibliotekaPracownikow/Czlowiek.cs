@@ -31,7 +31,7 @@ namespace BibliotekaPracownikow
 
         public virtual string PrzedstawSieDlaAdmina()
         {
-            return $"{this.Imie} {this.Nazwisko} {this.Pesel}";
+            return $"{this.Imie} {this.Nazwisko} \nPesel: {this.Pesel}";
         }
 
         public virtual string PrzedstawSieDlaInnych()

@@ -15,36 +15,36 @@ namespace PanelSterowania
         static void Main(string[] args)
         {
             Szpital szp = new Szpital();
-            Czlowiek czlowiek = new Lekarz("janek", "kowalski", 123, 3456, "kardiolog", false, "123");
-            Czlowiek czlowiek1 = new Lekarz("andrze", "kow", 123, 3456, "Kardiolog", false, "123");
-            Czlowiek czlowiek2 = new Lekarz("dimitr", "nowak", 123, 3456, "Kardiolog", false, "123");
-            Czlowiek czlowiek3 = new Lekarz("janusz", "luj", 123, 3456, "kardiolog", false, "123");
-            Czlowiek czlowiek4 = new Lekarz("milosz", "kamlot", 123, 3456, "laryngolog", false, "123");
-            Czlowiek czlowiek5 = new Lekarz("adam", "adamek", 123, 3456, "laryngolog", false, "123");
-            Czlowiek czlowiek6 = new Lekarz("eeeee", "eeeee", 123, 3456, "Neurolog", false, "123");
-            Czlowiek czlowiek7 = new Lekarz("ccccc", "acccdamek", 123, 3456, "Neurolog", false, "123");
-            Czlowiek czlowiek8 = new Pielegniarka("ddd", "ddd", 123, false, "123");
-            Czlowiek czlowiek9 = new Pielegniarka("ccc", "ccccc", 123, false, "123");
-            Czlowiek czlowiek10 = new Pielegniarka("bbbb", "bbbb", 123, false, "123");
-            Czlowiek czlowiek11 = new Pielegniarka("aaaa", "aaaa", 123, false, "123");
-            Czlowiek czlowiek12 = new Pielegniarka("muj", "kruj", 123, false, "123");
-            Czlowiek czlowiek13 = new Pielegniarka("kalinka", "malinka", 123, false, "123");
-            Czlowiek czlowiek14 = new Pielegniarka("janinka", "alinka", 123, false, "123");
-            szp.DodajPracownika(czlowiek);
-            szp.DodajPracownika(czlowiek1);
-            szp.DodajPracownika(czlowiek2);
-            szp.DodajPracownika(czlowiek3);
-            szp.DodajPracownika(czlowiek4);
-            szp.DodajPracownika(czlowiek5);
-            szp.DodajPracownika(czlowiek6);
-            szp.DodajPracownika(czlowiek7);
-            szp.DodajPracownika(czlowiek8);
-            szp.DodajPracownika(czlowiek9);
-            szp.DodajPracownika(czlowiek10);
-            szp.DodajPracownika(czlowiek11);
-            szp.DodajPracownika(czlowiek12);
-            szp.DodajPracownika(czlowiek13);
-            szp.DodajPracownika(czlowiek14);
+            //Czlowiek czlowiek = new Lekarz("janek", "kowalski", 123, 3456, "kardiolog", false, "123");
+            //Czlowiek czlowiek1 = new Lekarz("andrze", "kow", 123, 3456, "Kardiolog", false, "123");
+            //Czlowiek czlowiek2 = new Lekarz("dimitr", "nowak", 123, 3456, "Kardiolog", false, "123");
+            //Czlowiek czlowiek3 = new Lekarz("janusz", "luj", 123, 3456, "kardiolog", false, "123");
+            //Czlowiek czlowiek4 = new Lekarz("milosz", "kamlot", 123, 3456, "laryngolog", false, "123");
+            //Czlowiek czlowiek5 = new Lekarz("adam", "adamek", 123, 3456, "laryngolog", false, "123");
+            //Czlowiek czlowiek6 = new Lekarz("eeeee", "eeeee", 123, 3456, "Neurolog", false, "123");
+            //Czlowiek czlowiek7 = new Lekarz("ccccc", "acccdamek", 123, 3456, "Neurolog", false, "123");
+            //Czlowiek czlowiek8 = new Pielegniarka("ddd", "ddd", 123, false, "123");
+            //Czlowiek czlowiek9 = new Pielegniarka("ccc", "ccccc", 123, false, "123");
+            //Czlowiek czlowiek10 = new Pielegniarka("bbbb", "bbbb", 123, false, "123");
+            //Czlowiek czlowiek11 = new Pielegniarka("aaaa", "aaaa", 123, false, "123");
+            //Czlowiek czlowiek12 = new Pielegniarka("muj", "kruj", 123, false, "123");
+            //Czlowiek czlowiek13 = new Pielegniarka("kalinka", "malinka", 123, false, "123");
+            //Czlowiek czlowiek14 = new Pielegniarka("janinka", "alinka", 123, false, "123");
+            //szp.DodajPracownika(czlowiek);
+            //szp.DodajPracownika(czlowiek1);
+            //szp.DodajPracownika(czlowiek2);
+            //szp.DodajPracownika(czlowiek3);
+            //szp.DodajPracownika(czlowiek4);
+            //szp.DodajPracownika(czlowiek5);
+            //szp.DodajPracownika(czlowiek6);
+            //szp.DodajPracownika(czlowiek7);
+            //szp.DodajPracownika(czlowiek8);
+            //szp.DodajPracownika(czlowiek9);
+            //szp.DodajPracownika(czlowiek10);
+            //szp.DodajPracownika(czlowiek11);
+            //szp.DodajPracownika(czlowiek12);
+            //szp.DodajPracownika(czlowiek13);
+            //szp.DodajPracownika(czlowiek14);
             List<List<Czlowiek>> listaDyzurow = new List<List<Czlowiek>>();
 
 
@@ -67,7 +67,7 @@ namespace PanelSterowania
             //WybierzPlik();
         }
         protected const string specjalizacjaLekarza = "1.Kardiolog\n2.Urolog\n3.Neurolog\n4.Laryngolog";
-        protected const string menuGrafiku = "1.Ustal grafik dla wszystkich\n2.Wyswietl grafik pracownika\n3.Usun duzyr\n4.Dodaj dyzur\n" +
+        protected const string menuGrafiku = "1.Ustal grafik dla wszystkich\n2.Wyswietl grafiki\n3.Usun duzyr\n4.Dodaj dyzur\n" +
             "5.Zapisz grafik\n6.Wczytaj grafik\n7.Cofnij";
         private const string menuWyboruKimJestes = "Wybierz uzytkownika:\n1.Administrator\n2.Uzytkownik\n3.Wyjscie";
         private const string menuOperacjiNaPracownikach = "1.Dodaj pracownika\n2.Usun pracownika\n3.Edytuj dane pracownika\n4.Wyswietl pracownikow\n" +
