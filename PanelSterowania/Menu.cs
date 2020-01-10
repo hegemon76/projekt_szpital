@@ -15,37 +15,37 @@ namespace PanelSterowania
         static void Main(string[] args)
         {
             Szpital szp = new Szpital();
-            //Czlowiek czlowiek = new Lekarz("janek", "kowalski", 123, 3456, "kardiolog", false, "123");
-            //Czlowiek czlowiek1 = new Lekarz("andrze", "kow", 123, 3456, "Kardiolog", false, "123");
-            //Czlowiek czlowiek2 = new Lekarz("dimitr", "nowak", 123, 3456, "Kardiolog", false, "123");
-            //Czlowiek czlowiek3 = new Lekarz("janusz", "luj", 123, 3456, "kardiolog", false, "123");
-            //Czlowiek czlowiek4 = new Lekarz("milosz", "kamlot", 123, 3456, "laryngolog", false, "123");
-            //Czlowiek czlowiek5 = new Lekarz("adam", "adamek", 123, 3456, "laryngolog", false, "123");
-            //Czlowiek czlowiek6 = new Lekarz("eeeee", "eeeee", 123, 3456, "Neurolog", false, "123");
-            //Czlowiek czlowiek7 = new Lekarz("ccccc", "acccdamek", 123, 3456, "Neurolog", false, "123");
-            //Czlowiek czlowiek8 = new Pielegniarka("ddd", "ddd", 123, false, "123");
-            //Czlowiek czlowiek9 = new Pielegniarka("ccc", "ccccc", 123, false, "123");
-            //Czlowiek czlowiek10 = new Pielegniarka("bbbb", "bbbb", 123, false, "123");
-            //Czlowiek czlowiek11 = new Pielegniarka("aaaa", "aaaa", 123, false, "123");
-            //Czlowiek czlowiek12 = new Pielegniarka("muj", "kruj", 123, false, "123");
-            //Czlowiek czlowiek13 = new Pielegniarka("kalinka", "malinka", 123, false, "123");
-            //Czlowiek czlowiek14 = new Pielegniarka("janinka", "alinka", 123, false, "123");
-            //szp.DodajPracownika(czlowiek);
-            //szp.DodajPracownika(czlowiek1);
-            //szp.DodajPracownika(czlowiek2);
-            //szp.DodajPracownika(czlowiek3);
-            //szp.DodajPracownika(czlowiek4);
-            //szp.DodajPracownika(czlowiek5);
-            //szp.DodajPracownika(czlowiek6);
-            //szp.DodajPracownika(czlowiek7);
-            //szp.DodajPracownika(czlowiek8);
-            //szp.DodajPracownika(czlowiek9);
-            //szp.DodajPracownika(czlowiek10);
-            //szp.DodajPracownika(czlowiek11);
-            //szp.DodajPracownika(czlowiek12);
-            //szp.DodajPracownika(czlowiek13);
-            //szp.DodajPracownika(czlowiek14);
-            //List<List<Czlowiek>> listaDyzurow = new List<List<Czlowiek>>();
+            Czlowiek czlowiek = new Lekarz("janek", "kowalski", 123, 3456, "kardiolog", false, "123");
+            Czlowiek czlowiek1 = new Lekarz("andrze", "kow", 123, 3456, "Kardiolog", false, "123");
+            Czlowiek czlowiek2 = new Lekarz("dimitr", "nowak", 123, 3456, "Kardiolog", false, "123");
+            Czlowiek czlowiek3 = new Lekarz("janusz", "luj", 123, 3456, "kardiolog", false, "123");
+            Czlowiek czlowiek4 = new Lekarz("milosz", "kamlot", 123, 3456, "laryngolog", false, "123");
+            Czlowiek czlowiek5 = new Lekarz("adam", "adamek", 123, 3456, "laryngolog", false, "123");
+            Czlowiek czlowiek6 = new Lekarz("eeeee", "eeeee", 123, 3456, "Neurolog", false, "123");
+            Czlowiek czlowiek7 = new Lekarz("ccccc", "acccdamek", 123, 3456, "Neurolog", false, "123");
+            Czlowiek czlowiek8 = new Pielegniarka("ddd", "ddd", 123, false, "123");
+            Czlowiek czlowiek9 = new Pielegniarka("ccc", "ccccc", 123, false, "123");
+            Czlowiek czlowiek10 = new Pielegniarka("bbbb", "bbbb", 123, false, "123");
+            Czlowiek czlowiek11 = new Pielegniarka("aaaa", "aaaa", 123, false, "123");
+            Czlowiek czlowiek12 = new Pielegniarka("muj", "kruj", 123, false, "123");
+            Czlowiek czlowiek13 = new Pielegniarka("kalinka", "malinka", 123, false, "123");
+            Czlowiek czlowiek14 = new Pielegniarka("janinka", "alinka", 123, false, "123");
+            szp.DodajPracownika(czlowiek);
+            szp.DodajPracownika(czlowiek1);
+            szp.DodajPracownika(czlowiek2);
+            szp.DodajPracownika(czlowiek3);
+            szp.DodajPracownika(czlowiek4);
+            szp.DodajPracownika(czlowiek5);
+            szp.DodajPracownika(czlowiek6);
+            szp.DodajPracownika(czlowiek7);
+            szp.DodajPracownika(czlowiek8);
+            szp.DodajPracownika(czlowiek9);
+            szp.DodajPracownika(czlowiek10);
+            szp.DodajPracownika(czlowiek11);
+            szp.DodajPracownika(czlowiek12);
+            szp.DodajPracownika(czlowiek13);
+            szp.DodajPracownika(czlowiek14);
+            List<List<Czlowiek>> listaDyzurow = new List<List<Czlowiek>>();
 
 
             //Console.WriteLine(szp.liczbaPracownikow);
@@ -375,28 +375,18 @@ namespace PanelSterowania
             else
             {
                 Stream fs = File.OpenRead(wybranyPlik);
-                if (!szpital.Equals(fs))
+                BinaryFormatter bf = new BinaryFormatter();
+                if (bf.Deserialize(fs) is List<Czlowiek>)
                 {
+                    fs.Seek(0, SeekOrigin.Begin);
+                    szpital.ListaPracownikow = (List<Czlowiek>)bf.Deserialize(fs);
                     fs.Close();
-                    Console.WriteLine("Bledne typy danych");
+                    Console.WriteLine("Wczytano poprawnie");
                 }
                 else
                 {
-                    try
-                    {
-                        BinaryFormatter bf = new BinaryFormatter();
-                        szpital.ListaPracownikow = (List<Czlowiek>)bf.Deserialize(fs);
-                    }
-                    catch (SerializationException e)
-                    {
-                        Console.WriteLine($"Nie udało się ponieważ {e.Message}");
-                        throw;
-                    }
-                    finally
-                    {
-                        fs.Close();
-                        Console.WriteLine("Dane wczytano prawidłowo");
-                    }
+                    fs.Close();
+                    Console.WriteLine("Bledny format wczyywanego pliku");
                 }
             }
         }
@@ -408,28 +398,18 @@ namespace PanelSterowania
             else
             {
                 Stream fs = File.OpenRead(wybranyPlik);
-                if (fs.GetType() != szpital.listaDyzurow.GetType())
+                BinaryFormatter bf = new BinaryFormatter();
+                if (bf.Deserialize(fs) is List<List<Czlowiek>>)
                 {
+                    fs.Seek(0, SeekOrigin.Begin);
+                    szpital.listaDyzurow = (List<List<Czlowiek>>)bf.Deserialize(fs);
                     fs.Close();
-                    Console.WriteLine("Bledne typy danych");
+                    Console.WriteLine("Wczytano poprawnie");
                 }
                 else
                 {
-                    try
-                    {
-                        BinaryFormatter bf = new BinaryFormatter();
-                        szpital.listaDyzurow = (List<List<Czlowiek>>)bf.Deserialize(fs);
-                    }
-                    catch (SerializationException e)
-                    {
-                        Console.WriteLine($"Nie udało się ponieważ {e.Message}");
-                        throw;
-                    }
-                    finally
-                    {
-                        fs.Close();
-                        Console.WriteLine("Dane wczytano prawidłowo");
-                    }
+                    fs.Close();
+                    Console.WriteLine("Bledny format wczyywanego pliku");
                 }
             }
         }
@@ -444,7 +424,7 @@ namespace PanelSterowania
             }
             wybor = podajLiczbe("Ktory plik wybierasz?", 0, fileArray.Length);
 
-            plik = Path.GetFileName(fileArray[wybor - 1]);
+            plik = fileArray[wybor - 1];
             return plik;
         }
         //public static void MenuStare(Szpital szpital)
