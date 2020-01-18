@@ -45,7 +45,7 @@ namespace PanelSterowania
             //szp.DodajPracownika(czlowiek12);
             //szp.DodajPracownika(czlowiek13);
             //szp.DodajPracownika(czlowiek14);
-            List<List<Czlowiek>> listaDyzurow = new List<List<Czlowiek>>();
+            //  List<List<Czlowiek>> listaDyzurow = new List<List<Czlowiek>>();
 
 
             //Console.WriteLine(szp.liczbaPracownikow);
@@ -63,12 +63,14 @@ namespace PanelSterowania
             // szp.UstawGrafik();
             // szp.WyswietlGrafik();
             // MenuSzpitala(szp);
+            deserializujLudzi(szp);
+            deserializujGrafiki(szp);
             menuWyboruUzytkownika(szp);
             //WybierzPlik();
         }
-        protected const string specjalizacjaLekarza = "1.Kardiolog\n2.Urolog\n3.Neurolog\n4.Laryngolog";
-        protected const string menuGrafiku = "1.Ustal grafik dla wszystkich\n2.Wyswietl grafiki\n3.Usun duzyr\n4.Dodaj dyzur\n" +
-            "5.Zapisz grafik\n6.Wczytaj grafik\n7.Cofnij";
+        private const string specjalizacjaLekarza = "1.Kardiolog\n2.Urolog\n3.Neurolog\n4.Laryngolog";
+        private const string menuGrafiku = "1.Ustal grafik dla wszystkich\n2.Wyswietl grafiki\n3.Usun duzyr\n4.Dodaj dyzur\n" +
+             "5.Zapisz grafik\n6.Wczytaj grafik\n7.Cofnij";
         private const string menuWyboruKimJestes = "Wybierz uzytkownika:\n1.Administrator\n2.Uzytkownik\n3.Wyjscie";
         private const string menuOperacjiNaPracownikach = "1.Dodaj pracownika\n2.Usun pracownika\n3.Edytuj dane pracownika\n4.Wyswietl pracownikow\n" +
             "5.Wyswietl grafik pracownika\n6.Zapisz liste pracownikow\n7.Wczytaj liste pracownikow\n8.Wyjscie";
@@ -114,6 +116,10 @@ namespace PanelSterowania
                     case 2:
                         OperacjeNaPracownikach(szpital);
                         break;
+                    case 3:
+                        serializujGrafiki(szpital);
+                        serializujLudzi(szpital);
+                        break;
                     default:
                         break;
                 }
@@ -133,6 +139,10 @@ namespace PanelSterowania
                         break;
                     case 2:
                         MenuGlowneUzytkownika(szpital);
+                        break;
+                    case 3:
+                        serializujLudzi(szpital);
+                        serializujGrafiki(szpital);
                         break;
                     default:
                         break;
@@ -169,10 +179,10 @@ namespace PanelSterowania
                         szpital.DodajDyzur(gdzieDodac, nrPracownika, ileDniMaMiesiac);
                         break;
                     case 5:
-                        serializujGrafiki(szpital);
+                        serializujGrafiki(szpital, podajTekst("Podaj nazwe grafiku: ", 2));
                         break;
                     case 6:
-                        deserializujGrafiki(szpital);
+                        deserializujGrafiki(szpital, WybierzPlik());
                         break;
                     default:
                         break;
@@ -207,10 +217,10 @@ namespace PanelSterowania
                         szpital.WyswietlGrafikDanegoPracownika(podajLiczbe("Ktora osobe wybierasz? ", 1, szpital.ListaPracownikow.Count()));
                         break;
                     case 6:
-                        serializujLudzi(szpital);
+                        serializujLudzi(szpital, podajTekst("Podaj nazwe grafiku: ", 2));
                         break;
                     case 7:
-                        deserializujLudzi(szpital);
+                        deserializujLudzi(szpital, WybierzPlik());
                         break;
                     default:
                         break;
@@ -323,9 +333,8 @@ namespace PanelSterowania
             if (input.ToUpper() == "TAK" || input.ToUpper() == "T") return true;
             else return false;
         }
-        static void serializujLudzi(Szpital szpital)
+        static void serializujLudzi(Szpital szpital, string nazwaPliku)
         {
-            string nazwaPliku = podajTekst("Podaj nazwe grafiku: ", 2);
             nazwaPliku = nazwaPliku + ".dat";
             FileStream fs = new FileStream(nazwaPliku, FileMode.Create);
             try
@@ -336,41 +345,34 @@ namespace PanelSterowania
             catch (SerializationException e)
             {
                 Console.WriteLine($"Nie udało się ponieważ {e.Message}");
-                throw;
             }
             finally
             {
                 fs.Close();
                 Console.WriteLine("Dane zapisano prawidłowo");
             }
-
         }
-        static void serializujGrafiki(Szpital szpital)
+        static void serializujLudzi(Szpital szpital)
         {
-            string nazwaPliku = podajTekst("Podaj nazwe grafiku: ", 2);
-            nazwaPliku = nazwaPliku + ".dat";
+            string nazwaPliku = "pracownicy.dat";
             FileStream fs = new FileStream(nazwaPliku, FileMode.Create);
             try
             {
                 BinaryFormatter bf = new BinaryFormatter();
-                bf.Serialize(fs, szpital.listaDyzurow);
+                bf.Serialize(fs, szpital.ListaPracownikow);
             }
             catch (SerializationException e)
             {
                 Console.WriteLine($"Nie udało się ponieważ {e.Message}");
-                throw;
             }
             finally
             {
                 fs.Close();
                 Console.WriteLine("Dane zapisano prawidłowo");
             }
-
         }
-        static void deserializujLudzi(Szpital szpital)
+        static void deserializujLudzi(Szpital szpital, string wybranyPlik)
         {
-            string wybranyPlik;
-            wybranyPlik = WybierzPlik();
             if (!File.Exists(wybranyPlik)) Console.WriteLine("Nie udalo sie zlokalizowac pliku");
             else
             {
@@ -390,10 +392,92 @@ namespace PanelSterowania
                 }
             }
         }
+        static void deserializujLudzi(Szpital szpital)
+        {
+            string wybranyPlik = "pracownicy.dat";
+            if (!File.Exists(wybranyPlik)) Console.WriteLine("Nie udalo sie zlokalizowac pliku");
+            else
+            {
+                Stream fs = File.OpenRead(wybranyPlik);
+                BinaryFormatter bf = new BinaryFormatter();
+                if (bf.Deserialize(fs) is List<Czlowiek>)
+                {
+                    fs.Seek(0, SeekOrigin.Begin);
+                    szpital.ListaPracownikow = (List<Czlowiek>)bf.Deserialize(fs);
+                    fs.Close();
+                    Console.WriteLine("Wczytano poprawnie");
+                }
+                else
+                {
+                    fs.Close();
+                    Console.WriteLine("Bledny format wczyywanego pliku");
+                }
+            }
+        }
+
+        static void serializujGrafiki(Szpital szpital, string nazwaPliku)
+        {
+            nazwaPliku = nazwaPliku + ".dat";
+            FileStream fs = new FileStream(nazwaPliku, FileMode.Create);
+            try
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(fs, szpital.listaDyzurow);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine($"Nie udało się ponieważ {e.Message}");
+            }
+            finally
+            {
+                fs.Close();
+                Console.WriteLine("Dane zapisano prawidłowo");
+            }
+        }
+        static void serializujGrafiki(Szpital szpital)
+        {
+            string nazwaPliku = "grafiki.dat";
+            FileStream fs = new FileStream(nazwaPliku, FileMode.Create);
+            try
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(fs, szpital.listaDyzurow);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine($"Nie udało się ponieważ {e.Message}");
+            }
+            finally
+            {
+                fs.Close();
+                Console.WriteLine("Dane zapisano prawidłowo");
+            }
+        }
+
+        static void deserializujGrafiki(Szpital szpital, string wybranyPlik)
+        {
+            if (!File.Exists(wybranyPlik)) Console.WriteLine("Nie udalo sie zlokalizowac pliku");
+            else
+            {
+                Stream fs = File.OpenRead(wybranyPlik);
+                BinaryFormatter bf = new BinaryFormatter();
+                if (bf.Deserialize(fs) is List<List<Czlowiek>>)
+                {
+                    fs.Seek(0, SeekOrigin.Begin);
+                    szpital.listaDyzurow = (List<List<Czlowiek>>)bf.Deserialize(fs);
+                    fs.Close();
+                    Console.WriteLine("Wczytano poprawnie");
+                }
+                else
+                {
+                    fs.Close();
+                    Console.WriteLine("Bledny format wczyywanego pliku");
+                }
+            }
+        }
         static void deserializujGrafiki(Szpital szpital)
         {
-            string wybranyPlik;
-            wybranyPlik = WybierzPlik();
+            string wybranyPlik = "grafiki.dat";
             if (!File.Exists(wybranyPlik)) Console.WriteLine("Nie udalo sie zlokalizowac pliku");
             else
             {
@@ -427,72 +511,6 @@ namespace PanelSterowania
             plik = fileArray[wybor - 1];
             return plik;
         }
-        //public static void MenuStare(Szpital szpital)
-        //{
-        //    deserializuj(szpital);
-        //    deserializujGrafiki(szpital);
-        //    int ileDniMaMiesiac = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
-        //    int wyborMenu;
-        //    do
-        //    {
-        //        wyborMenu = podajLiczbe(menuAplikacji, 1, 12);
-        //        Console.Clear();
-        //        switch (wyborMenu)
-        //        {
-        //            case 1:
-        //                szpital.DodajPracownika(UtworzPracownika());
-        //                break;
-        //            case 2:
-        //                szpital.WyswietlPracownikow();
-        //                szpital.UsunPracownika(podajLiczbe("Ktorego pracownika usuwamy? ", 1, szpital.ListaPracownikow.Count()));
-        //                break;
-        //            case 3:
-        //                szpital.WyswietlPracownikow();
-        //                break;
-        //            case 4:
-        //                szpital.WyswietlPracownikow();
-        //                EdytujDane(szpital);
-        //                break;
-        //            case 5:
-        //                szpital.UstawGrafik();
-        //                Console.WriteLine("Grafik ustalono");
-        //                break;
-        //            case 6:
-        //                szpital.WyswietlGrafik();
-        //                break;
-        //            case 7:
-        //                szpital.WyswietlPracownikow();
-        //                szpital.WyswietlGrafikDanegoPracownika(podajLiczbe("Ktora osobe wybierasz? ", 1, szpital.ListaPracownikow.Count()));
-        //                break;
-        //            case 8:
-        //                serializuj(szpital);
-        //                break;
-        //            case 9:
-        //                deserializuj(szpital);
-        //                break;
-        //            case 10:
-        //                szpital.WyswietlGrafik();
-        //                int dzienMiesiaca = podajLiczbe("Podaj dzien miesiaca", 1, ileDniMaMiesiac);
-        //                int nrDyzuru = podajLiczbe("podaj nr dyzuru", 1, szpital.listaDyzurow[dzienMiesiaca - 1].Count());
-        //                szpital.UsunDyzur(dzienMiesiaca, nrDyzuru);
-        //                break;
-        //            case 11:
-        //                szpital.WyswietlPracownikow();
-        //                int nrPracownika = podajLiczbe("Podaj nr pracownika", 1, szpital.ListaPracownikow.Count());
-        //                int gdzieDodac = podajLiczbe("Podaj dzien do ktorego chcesz dodac pracownika", 1, ileDniMaMiesiac);
-        //                szpital.DodajDyzur(gdzieDodac, nrPracownika, ileDniMaMiesiac);
-        //                break;
-        //            case 12:
-        //                serializuj(szpital);
-        //                serializujGrafiki(szpital);
-        //                Console.WriteLine("Dane zostały zapisane, dziekuje za skorzystanie z programu");
-        //                break;
-        //            default:
-        //                break;
-        //        }
-        //        Console.WriteLine();
-        //    } while (wyborMenu != 12);
-        //}
     }
 }//class
 

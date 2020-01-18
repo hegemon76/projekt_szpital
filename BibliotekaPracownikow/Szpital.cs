@@ -33,7 +33,6 @@ namespace BibliotekaPracownikow
             int ileDniMaMiesiac = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
             for (int i = 0; i < ileDniMaMiesiac; i++)
             {
-
                 DateTime dt = new DateTime(year, month, i + 1);
                 int kardiolog = 0;
                 int urolog = 0;
