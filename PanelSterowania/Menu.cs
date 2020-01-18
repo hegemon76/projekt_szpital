@@ -45,36 +45,23 @@ namespace PanelSterowania
             //szp.DodajPracownika(czlowiek12);
             //szp.DodajPracownika(czlowiek13);
             //szp.DodajPracownika(czlowiek14);
-            //  List<List<Czlowiek>> listaDyzurow = new List<List<Czlowiek>>();
-
-
-            //Console.WriteLine(szp.liczbaPracownikow);
-            //listaDyzurow.Add(new List<Czlowiek>());
-            //listaDyzurow[0].Add(czlowiek);
-            //listaDyzurow[0].Add(czlowiek1);
-            // szp.UstawGrafik();
-            // szp.ustawGrafikPielegniarek();
-            //szp.WyswietlGrafik();
-            //ustawGrafikLekarzy(szp, listaDyzurow);
-            //WyswietlGrafik(listaDyzurow);
-            //szp.WyswietlPracownikow();
-            // szp.UsunPracownika(podajLiczbe("Ktorego pracownika usuwamy? ", 1, szp.ListaPracownikow.Count()));
-            //szp.WyswietlPracownikow();
-            // szp.UstawGrafik();
-            // szp.WyswietlGrafik();
-            // MenuSzpitala(szp);
             deserializujLudzi(szp);
             deserializujGrafiki(szp);
             menuWyboruUzytkownika(szp);
-            //WybierzPlik();
         }
         private const string specjalizacjaLekarza = "1.Kardiolog\n2.Urolog\n3.Neurolog\n4.Laryngolog";
+
         private const string menuGrafiku = "1.Ustal grafik dla wszystkich\n2.Wyswietl grafiki\n3.Usun duzyr\n4.Dodaj dyzur\n" +
              "5.Zapisz grafik\n6.Wczytaj grafik\n7.Cofnij";
+
         private const string menuWyboruKimJestes = "Wybierz uzytkownika:\n1.Administrator\n2.Uzytkownik\n3.Wyjscie";
-        private const string menuOperacjiNaPracownikach = "1.Dodaj pracownika\n2.Usun pracownika\n3.Edytuj dane pracownika\n4.Wyswietl pracownikow\n" +
+
+        private const string menuOperacjiNaPracownikach = "1.Dodaj pracownika\n2.Usun pracownika\n" +
+            "3.Edytuj dane pracownika\n4.Wyswietl pracownikow\n" +
             "5.Wyswietl grafik pracownika\n6.Zapisz liste pracownikow\n7.Wczytaj liste pracownikow\n8.Wyjscie";
+
         private const string menuAdmina = "1.Operacje na grafikach\n2.Operacje na pracownikach\n3.Cofnij";
+
         private const string menuUzytkownika = "1.Wyswietl dyzury dla wszystkich\n2.Wyswietl dyzury wskazanej osoby\n3.Cofnij";
 
         //  protected const string menuAplikacji = "1.Dodaj Pracownika\n2.Usun Pracownika\n3.Wyswietl Pracownikow\n4.Edytuj dane pracownika" +
