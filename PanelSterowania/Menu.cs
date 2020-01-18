@@ -64,9 +64,6 @@ namespace PanelSterowania
 
         private const string menuUzytkownika = "1.Wyswietl dyzury dla wszystkich\n2.Wyswietl dyzury wskazanej osoby\n3.Cofnij";
 
-        //  protected const string menuAplikacji = "1.Dodaj Pracownika\n2.Usun Pracownika\n3.Wyswietl Pracownikow\n4.Edytuj dane pracownika" +
-        //    "\n5.Ustal grafik dla lekarzy i pielegniarek\n6.Wyswietl grafiki\n7.Wyswietl grafik pracownika" +
-        //  "\n8.Zapisz liste pracownikow\n9.Odczytaj liste pracownikow\n10.Usun dyzur\n11.Dodaj dyzur\n12.wyjscie";
         public static void MenuGlowneUzytkownika(Szpital szpital)
         {
             int wybor;
@@ -136,7 +133,6 @@ namespace PanelSterowania
                 }
             } while (wybor != 3);
         }
-
         public static void OperacjeNaGrafiku(Szpital szpital)
         {
             int ileDniMaMiesiac = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
@@ -401,7 +397,6 @@ namespace PanelSterowania
                 }
             }
         }
-
         static void serializujGrafiki(Szpital szpital, string nazwaPliku)
         {
             nazwaPliku = nazwaPliku + ".dat";
@@ -440,7 +435,6 @@ namespace PanelSterowania
                 Console.WriteLine("Dane zapisano prawidłowo");
             }
         }
-
         static void deserializujGrafiki(Szpital szpital, string wybranyPlik)
         {
             if (!File.Exists(wybranyPlik)) Console.WriteLine("Nie udalo sie zlokalizowac pliku");

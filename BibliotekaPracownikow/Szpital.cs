@@ -90,9 +90,7 @@ namespace BibliotekaPracownikow
                     }
                 }
             }
-
         }
-
         private static void sprawdzanieCzyDanyLekarzIstnieje(string specjalizacja, ref int kardiolog, ref int urolog, ref int neurolog, ref int laryngolog)
         {
             if (specjalizacja == "KARDIOLOG") kardiolog++;
@@ -166,7 +164,6 @@ namespace BibliotekaPracownikow
                 Console.WriteLine($"{licznik}.{oPracownik.PrzedstawSieDlaInnych()}");
                 licznik++;
             }
-
         }
         public void WyswietlPracownikowAdminowi()
         {
